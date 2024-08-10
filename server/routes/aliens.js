@@ -15,6 +15,7 @@ router.get('/',async(req,res) =>{
 router.get('/:id',async(req,res)=>{
     try{
         const alien = await Alien.findById(req.params.id)
+        res.json(alien)
     }
     catch(err){
         res.send('Error' +err)
@@ -43,6 +44,17 @@ router.patch('/:id', async(req,res)=>{
         alien.sub = req.body.sub
         const a1 = await alien.save()
         res.json(a1)
+    }
+    catch(err){
+        res.send('Error')
+    }
+})
+
+router.delete('/:id',async(req,res)=>{
+    try{
+      const res =  await Alien.deleteOne({_id : req.params.id})
+      res.send('Deleted')
+        
     }
     catch(err){
         res.send('Error')
