@@ -52,7 +52,7 @@ router.patch('/:id', async(req,res)=>{
 
 router.delete('/:id',async(req,res)=>{
     try{
-      const res =  await Alien.deleteOne({_id : req.params.id})
+      const result =  await Alien.deleteOne({_id : req.params.id})
       res.send('Deleted')
         
     }
