@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const alienRouter =require('./routes/aliens')
+const empRouter =require('./controller/emp_data')
 
 const url = 'mongodb://localhost:27017/CBITDB'
 const app = express()
@@ -16,7 +16,7 @@ con.on('open',()=>
 app.use(cors())
 app.use(express.json())
 
-app.use('/aliens',alienRouter)
+app.use('/emp_data',empRouter)
 app.listen(3000,()=>{
     console.log('Server started')
 })

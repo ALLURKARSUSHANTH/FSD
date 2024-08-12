@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const Alien = require('../models/alien')
+const Employee = require('../models/employee')
 
 router.get('/',async(req,res) =>{
     try{
-        const aliens = await Alien.find()
-        res.json(aliens)
+        const emp = await Employee.find()
+        res.json(emp)
     }
     catch(err){
         res.send('Error'+err)
@@ -14,8 +14,8 @@ router.get('/',async(req,res) =>{
 
 router.get('/:id',async(req,res)=>{
     try{
-        const alien = await Alien.findById(req.params.id)
-        res.json(alien)
+        const emp = await Employee.findById(req.params.id)
+        res.json(emp)
     }
     catch(err){
         res.send('Error' +err)
@@ -23,14 +23,15 @@ router.get('/:id',async(req,res)=>{
 })
 
 router.post('/',async(req,res)=>{
-    const alien= new Alien({
+    const emp= new Employee({
+        empid : req.body.empid,
         name : req.body.name,
-        tech : req.body.tech,
-        sub: req.body.sub
+        designation : req.body.designation,
+        permanent : req.body.permanent
     })
 
     try{
-        const a1 = await alien.save()
+        const a1 = await emp.save()
         res.json(a1)
     }
     catch(err){
@@ -40,9 +41,9 @@ router.post('/',async(req,res)=>{
 
 router.patch('/:id', async(req,res)=>{
     try{
-        const alien = await Alien.findById(req.params.id)
-        alien.sub = req.body.sub
-        const a1 = await alien.save()
+        const emp = await Employee.findById(req.params.id)
+        emp.permanent = req.body.permanent
+        const a1 = await emp.save()
         res.json(a1)
     }
     catch(err){
@@ -52,7 +53,7 @@ router.patch('/:id', async(req,res)=>{
 
 router.delete('/:id',async(req,res)=>{
     try{
-      const result =  await Alien.deleteOne({_id : req.params.id})
+      const result =  await Employee.deleteOne({_id : req.params.id})
       res.send('Deleted')
         
     }

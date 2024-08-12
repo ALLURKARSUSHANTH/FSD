@@ -1,18 +1,22 @@
 const mongoose = require('mongoose')
-const alienSchema = new mongoose.Schema({
+const empSchema = new mongoose.Schema({
+    empid : {
+        type : Number,
+        required : true
+    },
     name:{
         type : String,
         required : true
     },
-    tech:{
+    designation:{
         type : String,
         required : true 
     },
-    sub:{
+    permanent:{
         type : Boolean,
         required : true,
         default : false
     }
 })
 
-module.exports = mongoose.model('Alien',alienSchema)
+module.exports = mongoose.model('Employee',empSchema)
